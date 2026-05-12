@@ -19,7 +19,6 @@ def sample_bus():
         fare_per_seat=850.0,
     )
 
-
 @pytest.fixture
 def valid_passenger():
     return Passenger(
