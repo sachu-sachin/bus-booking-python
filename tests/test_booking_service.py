@@ -1,11 +1,12 @@
 """Tests for booking service"""
+
 import pytest
 from datetime import datetime
 from app.models import Bus, Passenger, BookingStatus, SeatStatus
 from app.booking_service import BusBookingService
 
-
 # ── Fixtures ───────────────────────────────────────────────────────────────────
+
 
 @pytest.fixture
 def service():
@@ -58,6 +59,7 @@ def loaded_service(service, bus_blr_mum):
 
 # ── Bus Management Tests ────────────────────────────────────────────────────────
 
+
 class TestBusManagement:
     def test_add_bus_success(self, service, bus_blr_mum):
         service.add_bus(bus_blr_mum)
@@ -77,6 +79,7 @@ class TestBusManagement:
 
 
 # ── Search Tests ────────────────────────────────────────────────────────────────
+
 
 class TestSearch:
     def test_search_finds_matching_bus(self, service, bus_blr_mum, bus_del_mum):
@@ -109,6 +112,7 @@ class TestSearch:
 
 
 # ── Booking Tests ───────────────────────────────────────────────────────────────
+
 
 class TestBooking:
     def test_successful_booking(self, loaded_service, passenger):
@@ -146,6 +150,7 @@ class TestBooking:
 
 # ── Cancellation Tests ──────────────────────────────────────────────────────────
 
+
 class TestCancellation:
     def test_cancel_booking_changes_status(self, loaded_service, passenger):
         booking = loaded_service.book_seat("B001", passenger, "1")
@@ -171,6 +176,7 @@ class TestCancellation:
 
 
 # ── Passenger Bookings ──────────────────────────────────────────────────────────
+
 
 class TestPassengerBookings:
     def test_get_passenger_bookings(self, service, bus_blr_mum, bus_del_mum, passenger):

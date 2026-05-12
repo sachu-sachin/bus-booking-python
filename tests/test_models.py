@@ -1,10 +1,11 @@
 """Tests for domain models"""
+
 import pytest
 from datetime import datetime, timedelta
 from app.models import Bus, Seat, Passenger, Booking, SeatStatus, BookingStatus
 
-
 # ── Fixtures ───────────────────────────────────────────────────────────────────
+
 
 @pytest.fixture
 def sample_bus():
@@ -19,6 +20,7 @@ def sample_bus():
         fare_per_seat=850.0,
     )
 
+
 @pytest.fixture
 def valid_passenger():
     return Passenger(
@@ -30,6 +32,7 @@ def valid_passenger():
 
 
 # ── Seat Tests ──────────────────────────────────────────────────────────────────
+
 
 class TestSeat:
     def test_seat_default_available(self):
@@ -46,6 +49,7 @@ class TestSeat:
 
 
 # ── Bus Tests ───────────────────────────────────────────────────────────────────
+
 
 class TestBus:
     def test_bus_creates_correct_number_of_seats(self, sample_bus):
@@ -71,6 +75,7 @@ class TestBus:
 
 
 # ── Passenger Validation Tests ──────────────────────────────────────────────────
+
 
 class TestPassengerValidation:
     def test_valid_passenger_passes(self, valid_passenger):
@@ -103,6 +108,7 @@ class TestPassengerValidation:
 
 
 # ── Booking Tests ───────────────────────────────────────────────────────────────
+
 
 class TestBooking:
     def test_booking_total_fare(self, sample_bus, valid_passenger):

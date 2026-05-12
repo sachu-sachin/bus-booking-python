@@ -1,6 +1,7 @@
 """
 Bus Booking System - Domain Models
 """
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
@@ -43,9 +44,7 @@ class Bus:
 
     def __post_init__(self):
         if not self.seats:
-            self.seats = [
-                Seat(seat_number=f"{i+1}") for i in range(self.total_seats)
-            ]
+            self.seats = [Seat(seat_number=f"{i+1}") for i in range(self.total_seats)]
 
     def available_seats(self) -> List[Seat]:
         return [s for s in self.seats if s.is_available()]

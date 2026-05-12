@@ -1,6 +1,7 @@
 """
 Bus Booking System - Service Layer
 """
+
 from typing import Dict, List, Optional
 from .models import Bus, Booking, Passenger, SeatStatus, BookingStatus
 
@@ -40,9 +41,7 @@ class BusBookingService:
 
     # ── Booking ────────────────────────────────────────────────────────────────
 
-    def book_seat(
-        self, bus_id: str, passenger: Passenger, seat_number: str
-    ) -> Booking:
+    def book_seat(self, bus_id: str, passenger: Passenger, seat_number: str) -> Booking:
         """Book a specific seat on a bus for a passenger."""
         bus = self._buses.get(bus_id)
         if not bus:
@@ -76,15 +75,11 @@ class BusBookingService:
     def get_booking(self, booking_id: str) -> Optional[Booking]:
         return self._bookings.get(booking_id)
 
-    def list_bookings(
-        self, status: Optional[BookingStatus] = None
-    ) -> List[Booking]:
+    def list_bookings(self, status: Optional[BookingStatus] = None) -> List[Booking]:
         bookings = list(self._bookings.values())
         if status:
             bookings = [b for b in bookings if b.status == status]
         return bookings
 
     def get_passenger_bookings(self, email: str) -> List[Booking]:
-        return [
-            b for b in self._bookings.values() if b.passenger.email == email
-        ]
+        return [b for b in self._bookings.values() if b.passenger.email == email]
